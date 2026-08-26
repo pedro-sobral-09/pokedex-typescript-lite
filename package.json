@@ -1,0 +1,25 @@
+{
+  "name": "pokedex-typescript-lite",
+  "version": "1.0.0",
+  "description": "The Pokédex TypeScript Lite is a simple Node.js application with Typescript that fetches Pokémon data from the PokeAPI and organizes some results into a local catalog while the program is running.",
+  "main": "main.ts",
+  "scripts": {
+    "dev": "tsx src/main.ts",
+    "start": "tsc && node dist/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pedro-sobral-09/pokedex-typescript-lite.git"
+  },
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/pedro-sobral-09/pokedex-typescript-lite/issues"
+  },
+  "homepage": "https://github.com/pedro-sobral-09/pokedex-typescript-lite#readme",
+  "devDependencies": {
+    "@types/node": "^26.3.0",
+    "tsx": "^4.23.12",
+    "typescript": "^7.0.2"
+  }
+}
