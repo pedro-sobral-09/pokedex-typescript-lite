@@ -4,15 +4,15 @@ import boxService from "../service/boxService.js";
 export class Catalog {
     private pokemons: PokemonResume[] = [];
 
-    async init(){
+    async init(): Promise<void>{
         this.pokemons = await boxService.getPokemonsJSON();
     }
 
     async addPokemon(pokemon: PokemonResume){
 
-        const isExisting:boolean = this.pokemons.every((p) => p.id !== pokemon.id);
+        const isExisting:boolean = this.pokemons.some((p) => p.id === pokemon.id);
         
-        if(!isExisting){
+        if(isExisting){
             console.log(`Error: ${pokemon.name} is already in the catalog.`);
             return null;
         }
@@ -25,7 +25,7 @@ export class Catalog {
     }
 
     async listPokemons(){
-        if (this.pokemons.length == 0 ){
+        if (this.pokemons.length === 0 ){
             console.log(`NOTICE Empty catalog.`);
             return null;
         }
@@ -55,8 +55,15 @@ export class Catalog {
     }
 
     async removePokemon(id: number){
-        if (this.pokemons.length == 0 ){
+        if (this.pokemons.length == 0){
             console.log(`NOTICE Empty catalog.`);
+            return null;
+        }
+
+        const isExisting:boolean = this.pokemons.some((p) => p.id === id);
+        
+        if(!isExisting){
+            console.log(`Error: Pokemon with id ${id} is not exist in the catalog.`);
             return null;
         }
 

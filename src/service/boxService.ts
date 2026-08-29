@@ -1,7 +1,10 @@
 import { writeFile, readFile } from "node:fs/promises";
+import { fileURLToPath } from "node:url";
+import { dirname, join } from "node:path";
 import type { PokemonResume } from "../model/pokemonResume.js";
 
-const FILE = `./pokemons.json`;
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const FILE = join(__dirname, "../..", "pokemons.json");
 
 async function getPokemonsJSON():Promise<PokemonResume[]>{
     try {
@@ -13,6 +16,7 @@ async function getPokemonsJSON():Promise<PokemonResume[]>{
     } catch(error: any){
         if (error.code === "ENOENT"){
             await writeFile(FILE, "[]");
+            console.log(`Write JSON sucessfully`);
             
             const pokemons: PokemonResume[] = [];
             return pokemons;
@@ -23,18 +27,8 @@ async function getPokemonsJSON():Promise<PokemonResume[]>{
 }
 
 async function updatePokemonsJSON(pokemons: PokemonResume[]): Promise<void | PokemonResume[]>{
-    try {
-        await writeFile(FILE, JSON.stringify(pokemons));
-        console.log(`Write JSON sucessfully`);
-    } catch(error: any){
-        if (error.code === "ENOENT"){
-            await writeFile(FILE, "[]");
-            
-            const pokemons: PokemonResume[] = [];
-            return pokemons;
-        }
-        console.log(error);
-    }
+    await writeFile(FILE, JSON.stringify(pokemons));
+    console.log(`Write JSON sucessfully`);
 }
 
 export default {
