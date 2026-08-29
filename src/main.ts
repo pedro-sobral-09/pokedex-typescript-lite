@@ -5,6 +5,7 @@ async function main(){
     console.log(`Hello World`);
     
     const catalog = new Catalog;
+    catalog.init();
     
     const pikachu = await getPokemon(25);
     
@@ -24,11 +25,17 @@ async function main(){
         catalog.addPokemon(charizard);
     }
 
+    const picomon = await getPokemon(`picomon`);
+
+    if(picomon !== null){
+        catalog.addPokemon(picomon);
+    }
+
     catalog.listPokemons();
 
     catalog.removePokemon(25);
 
-    catalog.listPokemons()
+    catalog.listPokemons();
 }
 
 main();

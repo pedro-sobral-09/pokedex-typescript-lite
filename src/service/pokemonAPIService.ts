@@ -5,7 +5,7 @@ export async function getPokemon(nameOrId: string | number): Promise<PokemonResu
     try {
         const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${nameOrId}`);
         
-        if (!response){
+        if (!response.ok){
             console.log(`Error: Non-existent Pokémon`);
             return null;
         }
