@@ -6,7 +6,7 @@ export async function getPokemon(nameOrId: string | number): Promise<PokemonResu
         const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${nameOrId}`);
         
         if (!response.ok){
-            console.log(`Error: Non-existent Pokémon`);
+            console.log(`[ERROR] Pokémon not found: ${nameOrId}`);
             return null;
         }
 
@@ -28,7 +28,7 @@ export async function getPokemon(nameOrId: string | number): Promise<PokemonResu
         
         return pokemonResume;
     } catch (error){
-        console.log(`Error: Could not fetch the Pokémon`);
+        console.log(`[ERROR] Could not fetch the Pokémon: ${nameOrId}`);
         return null;
     }
 }

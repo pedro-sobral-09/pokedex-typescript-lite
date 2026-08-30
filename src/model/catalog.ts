@@ -13,7 +13,7 @@ export class Catalog {
         const isExisting:boolean = this.pokemons.some((p) => p.id === pokemon.id);
         
         if(isExisting){
-            console.log(`Error: ${pokemon.name} is already in the catalog.`);
+            console.log(`[WARNING] ${pokemon.name} is already in the catalog.`);
             return null;
         }
 
@@ -21,17 +21,17 @@ export class Catalog {
 
         await boxService.updatePokemonsJSON(this.pokemons);
 
-        console.log(`Done: ${pokemon.name} has been added to the catalog.`);
+        console.log(`[OK] ${pokemon.name} added to the catalog.`);
     }
 
     async listPokemons(){
         if (this.pokemons.length === 0 ){
-            console.log(`NOTICE Empty catalog.`);
+            console.log(`[WARNING] Empty catalog.`);
             return null;
         }
 
         console.log(``);
-        console.log(`Catalog:`)
+        console.log(`Current catalog:`)
         console.log(``);
         this.pokemons.forEach((pokemon) => {
             console.log(`-------------------------`);
@@ -56,14 +56,14 @@ export class Catalog {
 
     async removePokemon(id: number){
         if (this.pokemons.length == 0){
-            console.log(`NOTICE Empty catalog.`);
+            console.log(`[WARNING] Empty catalog.`);
             return null;
         }
 
         const isExisting:boolean = this.pokemons.some((p) => p.id === id);
         
         if(!isExisting){
-            console.log(`Error: Pokemon with id ${id} is not exist in the catalog.`);
+            console.log(`[WARNING] No Pokémon found with this ID: ${id}.`);
             return null;
         }
 
@@ -72,6 +72,6 @@ export class Catalog {
 
         await boxService.updatePokemonsJSON(this.pokemons);
 
-        console.log(`Removed pokemon with id ${id}`);
+        console.log(`[OK] Pokémon removed from the catalog.`);
     }
 }
