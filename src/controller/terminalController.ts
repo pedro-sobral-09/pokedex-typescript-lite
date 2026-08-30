@@ -13,7 +13,7 @@ export default class TerminalController {
                 const nameOrId = args[1];
 
                 if (!nameOrId){
-                    console.log(``);
+                    console.log(`[ERROR] Please provide the Pokémon name or ID. Usage: --add <name|id>`);
                     return;
                 }
 
@@ -31,7 +31,7 @@ export default class TerminalController {
                 const id = Number(args[1]);
 
                 if (!id){
-                    console.log(``);
+                    console.log(`[ERROR] Please provide a valid ID. Usage: --remove <id>`);
                     return;
                 }
 
@@ -40,7 +40,7 @@ export default class TerminalController {
             }
 
             default: {
-                console.log(`Command not found`);
+                console.log(`[ERROR] Command not found. Available commands: --add, --list, --remove`);
                 break;
             }
         }
